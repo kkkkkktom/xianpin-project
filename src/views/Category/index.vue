@@ -4,6 +4,7 @@ import {useRoute} from 'vue-router'
 import { getBannerAPI } from '@/apis/home';
 import {ref,onMounted} from 'vue'
 import GoodsItem from '../Home/components/GoodsItem.vue';
+import { onBeforeRouteUpdate } from 'vue-router';
     const bannerList=ref([])
     const getBanner =async()=>{
           const res=await getBannerAPI({
@@ -12,14 +13,21 @@ import GoodsItem from '../Home/components/GoodsItem.vue';
           bannerList.value=res.data.result
           // console.log(res.data.result)
     }
+
     const categorysObject=ref({})
     const route = useRoute()
-    const getCategorys=async()=>{
-        const res=await getCategoryAPI(route.params.id)
+    //无id传入时默认传参
+    const getCategorys=async(id=route.params.id)=>{
+        const res=await getCategoryAPI(id)
         categorysObject.value=res.data.result
         console.log(res.data.result)
     }
     onMounted(()=>{getCategorys(),getBanner()})
+    onBeforeRouteUpdate((to)=>{
+      console.log(to)
+      //to在这里指代的就是目标路由器
+      getCategorys(to.params.id)
+    })
 </script>
 
 <template>
