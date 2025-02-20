@@ -23,5 +23,9 @@ export function getHotAPI(){
   })
 }
 
-
+export function getProductAPI(){
+  return http({
+     url:'/home/goods'
+  })
+}
 
