@@ -42,6 +42,7 @@ console.log(categoryStore);
   height: 500px;
   background: rgba(0, 0, 0, 0.8);
   position: relative;
+  left:0.5px;
   z-index: 99;
 
   .menu {

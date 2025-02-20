@@ -17,19 +17,20 @@ defineProps({
 
 
 <template>
-    <div class="home-panel">
-        <div class="container">
-            <div class="head">
-                <!-- 主标题和副标题 -->
-                <h3>
-                    {{ title }}<small>{{ subTitle }}</small>
-                </h3>
-            </div>
-            <!-- 主体内容区域 -->
-            <div> 主体内容 </div>
-        </div>
+  <div class="home-panel">
+    <div class="container">
+      <div class="head">
+        <h3>
+          {{ title }}<small>{{ subTitle }}</small>
+        </h3>
+      </div>
+        <slot>
+
+        </slot>
     </div>
+  </div>
 </template>
+
 
 <style scoped lang='scss'>
 .home-panel {

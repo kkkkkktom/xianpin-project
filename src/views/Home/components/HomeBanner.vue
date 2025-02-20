@@ -3,11 +3,8 @@ import { getBannerAPI } from '@/apis/home';
 import {ref,onMounted} from 'vue'
 const bannerList=ref([])
 const getBanner =async()=>{
-  const res=await getBannerAPI()
-  bannerList.value=res.data.result
-  console.log(res.data.result);
-
-
+      const res=await getBannerAPI()
+      bannerList.value=res.data.result
 }
 onMounted(()=>getBanner())
 </script>
@@ -33,6 +30,7 @@ onMounted(()=>getBanner())
     position: relative;
     // left:50%;
     // transform: translateX(-50%);
+    right:0.5px;
     margin:0 auto;
     top: 0;
     z-index: 98;
