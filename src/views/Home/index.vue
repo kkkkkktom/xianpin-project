@@ -3,6 +3,7 @@ import HomeBanner from './components/HomeBanner.vue';
 import HomeCategory from './components/HomeCategory.vue';
 import HomeHot from './components/HomeHot.vue';
 import HomeProduct from './components/HomeProduct.vue';
+import HomePanel from './components/HomePanel.vue';
 </script>
 <template>
   <p class="test">我是home界面</p>
@@ -10,6 +11,8 @@ import HomeProduct from './components/HomeProduct.vue';
   <HomeCategory/>
   <HomeBanner/>
   </div>
+  <HomePanel title="新鲜好物" sub-title="新鲜好物">
+  </HomePanel>
   <HomeHot/>
   <HomeProduct/>
 
