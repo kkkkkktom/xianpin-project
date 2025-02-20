@@ -6,14 +6,18 @@ import HomeProduct from './components/HomeProduct.vue';
 </script>
 <template>
   <p class="test">我是home界面</p>
+  <div class="contain">
   <HomeCategory/>
   <HomeBanner/>
+  </div>
   <HomeHot/>
   <HomeProduct/>
 
 </template>
 <style scoped lang="scss">
-.test{
+.contain{
+    display:flex;
+    justify-content: center;
 
 }
 </style>
