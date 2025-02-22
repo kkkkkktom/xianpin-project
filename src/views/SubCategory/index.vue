@@ -27,6 +27,17 @@ const tabChange=()=>{
   categoryData.value.page=1
   getSubCategory()
 }
+const disable=ref(false)
+const load=async()=>{
+  console.log('加载更多')
+  categoryData.page++;
+  const res=await getSubCategoryAPI(categoryData.value)
+  goods.value=[...goods.value,res.data.result.items]
+  //加载完毕就结束监听，如果后端有明确的结束字段就用，没有就用下面的判定方法
+  if(res.data.result.items.length===0){
+    disabled.value=true
+  }
+}
 onMounted(()=>getCategoryFilter())
 onMounted(()=>getSubCategory())
 
@@ -49,7 +60,7 @@ onMounted(()=>getSubCategory())
                 <el-tab-pane label="最高人气" name="orderNum"></el-tab-pane>
                 <el-tab-pane label="评论最多" name="evaluateNum"></el-tab-pane>
             </el-tabs>
-            <div class="body">
+            <div class="body" v-infinite-scroll="load" infinite-scroll-disable="disable">
                 <!-- 商品列表-->
                  <GoodsItem v-for="good in goods" :good="good" :key="good.id"/>
             </div>
