@@ -2,6 +2,7 @@
 import { getDetailAPI } from '@/apis/detail';
 import { useRoute } from 'vue-router';
 import {ref,onMounted} from 'vue';
+import DetailHot from './components/DetailHot.vue';
 const detailData=ref([])
 const route=useRoute()
 const getDetail=async()=>{
@@ -109,13 +110,14 @@ onMounted(()=>getDetail())
                     </li>
                   </ul>
                   <!-- 图片 -->
-
+                  <img v-for="img in detailData.details?.pictures" :src="img" :key="img"/>
                 </div>
               </div>
             </div>
             <!-- 24热榜+专题推荐 -->
             <div class="goods-aside">
-
+                <DetailHot :hotType="1"/>
+                <DetailHot :hotType="2"/>
             </div>
           </div>
         </div>

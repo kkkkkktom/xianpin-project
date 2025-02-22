@@ -7,3 +7,13 @@ export const getDetailAPI=(id)=>{
     }
   })
 }
+export const getHotGoodsAPI=({id,type,limit})=>{
+  return http({
+    url:'/goods/hot',
+    params:{
+      id,
+      type,
+      limit
+    }
+  })
+}
