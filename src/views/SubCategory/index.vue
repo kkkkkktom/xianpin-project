@@ -21,7 +21,11 @@ const goods=ref([])
 const getSubCategory=async()=>{
   const res=await getSubCategoryAPI(categoryData.value);
   goods.value=res.data.result.items
-  console.log(res.data.result.items)
+  // console.log(res.data.result.items)
+}
+const tabChange=()=>{
+  categoryData.value.page=1
+  getSubCategory()
 }
 onMounted(()=>getCategoryFilter())
 onMounted(()=>getSubCategory())
@@ -40,7 +44,7 @@ onMounted(()=>getSubCategory())
             </el-breadcrumb>
         </div>
         <div class="sub-container">
-            <el-tabs>
+            <el-tabs v-model="categoryData.sortField" @tab-change="tabChange">
                 <el-tab-pane label="最新商品" name="publishTime"></el-tab-pane>
                 <el-tab-pane label="最高人气" name="orderNum"></el-tab-pane>
                 <el-tab-pane label="评论最多" name="evaluateNum"></el-tab-pane>
