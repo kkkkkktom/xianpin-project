@@ -1,6 +1,8 @@
 import {useIntersectionObserver} from '@vueuse/core'
+//插件定义
 export const lazyPlugin={
   install(app){
+    //组件的自定义指令
     app.directive('img-lazy',{
       mounted(el,binding){
         // console.log(el, binding.value)

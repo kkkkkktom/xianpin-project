@@ -20,7 +20,7 @@ import { onBeforeRouteUpdate } from 'vue-router';
     const getCategorys=async(id=route.params.id)=>{
         const res=await getCategoryAPI(id)
         categorysObject.value=res.data.result
-        console.log(res.data.result)
+        // console.log(res.data.result)
     }
     onMounted(()=>{getCategorys(),getBanner()})
     onBeforeRouteUpdate((to)=>{
@@ -52,7 +52,7 @@ import { onBeforeRouteUpdate } from 'vue-router';
           <h3>全部分类</h3>
           <ul>
             <li v-for="i in categorysObject.children" :key="i.id">
-              <RouterLink to="/">
+              <RouterLink :to="`/category/sub/${i.id}`">
                 <img :src="i.picture" />
                 <p>{{ i.name }}</p>
               </RouterLink>
