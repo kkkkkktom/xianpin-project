@@ -30,6 +30,12 @@ const rules={
   ]
 
 }
+const formRef=ref(null);
+const doValidate=()=>{
+  formRef.value.validate((valid)=>{
+    console.log(valid)
+  })
+}
 </script>
 
 
@@ -55,7 +61,7 @@ const rules={
         <div class="account-box">
           <div class="form">
             <el-form label-position="right" label-width="60px"
-              status-icon :model="form" :rules="rules">
+              status-icon :model="form" :rules="rules" ref="formRef">
               <el-form-item  label="账户" prop="account">
                 <el-input v-model="form.account"/>
               </el-form-item>
@@ -67,7 +73,7 @@ const rules={
                   我已同意隐私条款和服务条款
                 </el-checkbox>
               </el-form-item>
-              <el-button size="large" class="subBtn">点击登录</el-button>
+              <el-button size="large" class="subBtn" @click="doValidate">点击登录</el-button>
             </el-form>
           </div>
         </div>
