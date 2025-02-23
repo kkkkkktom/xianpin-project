@@ -3,9 +3,9 @@ Login/index.vue
  import {ref} from 'vue'
  //存储表单数据
 const form=ref({
-  account:'',
-  password:'',
-  agree:true
+  account:'123456',
+  password:'12345678',
+  agree:''
 })
 //rules表单验证规则，配合el-form使用
 const rules={
@@ -16,6 +16,18 @@ const rules={
     {required:true,message:'密码不能为空',trigger:'blur'},
     {min:6,max:14,meaasge:'密码不能为空',trigger:'blur'}
   ],
+  agree:[
+    {
+      validator:(rules,value,callback)=>{
+        if(value){
+            callback()
+        }else{
+          callback(new Error('请勾选协议'))
+        }
+        console.log(value)
+      }
+    }
+  ]
 
 }
 </script>
@@ -50,8 +62,8 @@ const rules={
               <el-form-item label="密码" prop="password">
                 <el-input v-model="form.password"/>
               </el-form-item>
-              <el-form-item label-width="22px">
-                <el-checkbox  size="large">
+              <el-form-item label-width="22px" prop="agree">
+                <el-checkbox  size="large" v-model="form.agree">
                   我已同意隐私条款和服务条款
                 </el-checkbox>
               </el-form-item>
