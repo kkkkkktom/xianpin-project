@@ -10,7 +10,7 @@ import { useUserStore } from '@/stores/user'
 const form=ref({
   account:'xiaotuxian001',
   password:'123456',
-  agree:''
+  agree:true
 })
 //rules表单验证规则，配合el-form使用
 const rules={
@@ -19,7 +19,7 @@ const rules={
   ],
   password:[
     {required:true,message:'密码不能为空',trigger:'blur'},
-    {min:6,max:14,meaasge:'密码不能为空',trigger:'blur'}
+    {min:6,max:14,message:'密码不能为空',trigger:'blur'}
   ],
   agree:[
     {
@@ -40,12 +40,12 @@ const router=useRouter()
 const userStore=useUserStore()
 const doValidate=()=>{
   const {account,password}=form.value
-  formRef.value.validate((valid)=>{
     formRef.value.validate(async(valid)=>{
-      console.log(valid)
+      // console.log(valid)
       if(valid){
-        userStore.getUserInfo=await loginAPI({account,password})
-        // console.log(res)
+        // await userStore.getUserInfo({account,password})
+        await userStore.getUserInfo({ account: form.value.account, password: form.value.password });
+        // console.log(useUserStore.userInfo)
         ElMessage({
           type:'success',
           message:'登录成功'
@@ -54,10 +54,9 @@ const doValidate=()=>{
           path:'/'
         })
       }
-    })
   })
 }
-onMounted(()=>doValidate())
+// onMounted(()=>userStore.getUserInfo())
 </script>
 
 
