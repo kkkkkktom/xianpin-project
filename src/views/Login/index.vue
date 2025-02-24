@@ -1,10 +1,14 @@
 Login/index.vue
 <script setup>
- import {ref} from 'vue'
+ import {ref,onMounted} from 'vue'
+ import {loginAPI} from '@/apis/user'
+ import { ElMessage } from 'element-plus'
+import 'element-plus/theme-chalk/el-message.css'
+import {useRouter} from 'vue-router'
  //存储表单数据
 const form=ref({
-  account:'123456',
-  password:'12345678',
+  account:'xiaotuxian001',
+  password:'123456',
   agree:''
 })
 //rules表单验证规则，配合el-form使用
@@ -31,11 +35,27 @@ const rules={
 
 }
 const formRef=ref(null);
+const router=useRouter()
 const doValidate=()=>{
+  const {account,password}=form.value
   formRef.value.validate((valid)=>{
-    console.log(valid)
+    formRef.value.validate(async(valid)=>{
+      console.log(valid)
+      if(valid){
+        const res=await loginAPI({account,password})
+        // console.log(res)
+        ElMessage({
+          type:'success',
+          message:'登录成功'
+        })
+        router.replace({
+          path:'/'
+        })
+      }
+    })
   })
 }
+onMounted(()=>doValidate())
 </script>
 
 
