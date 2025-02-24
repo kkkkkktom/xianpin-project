@@ -5,7 +5,7 @@ import { defineStore } from 'pinia';
     const categoryList=ref([])
     const getCategory=async()=>{
       const res=await getCategoryAPI()
-      categoryList.value=res.data.result
+      categoryList.value=res.result
     }
     return{
       categoryList,
