@@ -24,6 +24,12 @@ http.interceptors.response.use(res => res.data, e => {
       type: 'warning',
       message:e.response.data.message
   })
+  const userStore=useUserStore()
+  const router=useRouter()
+  if(e.response.status===401){
+    userStore.clearUserMessage()
+    router.push('/login')
+  }
   return Promise.reject(e)
 })
 
