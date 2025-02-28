@@ -8,7 +8,7 @@ const route=useRoute()
 const categoryList=ref([])
 const getCategoryFilter=async()=>{
   const res=await getCategoryFilterAPI(route.params.id)
-  categoryList.value=res.data.result;
+  categoryList.value=res.result;
   // console.log(res.data.result)
 }
 const categoryData=ref({
@@ -20,7 +20,7 @@ const categoryData=ref({
 const goods=ref([])
 const getSubCategory=async()=>{
   const res=await getSubCategoryAPI(categoryData.value);
-  goods.value=res.data.result.items
+  goods.value=res.result.items
   // console.log(res.data.result.items)
 }
 const tabChange=()=>{
@@ -32,9 +32,9 @@ const load=async()=>{
   console.log('加载更多')
   categoryData.page++;
   const res=await getSubCategoryAPI(categoryData.value)
-  goods.value=[...goods.value,res.data.result.items]
+  goods.value=[...goods.value,res.result.items]
   //加载完毕就结束监听，如果后端有明确的结束字段就用，没有就用下面的判定方法
-  if(res.data.result.items.length===0){
+  if(res.result.items.length===0){
     disabled.value=true
   }
 }

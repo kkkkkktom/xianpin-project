@@ -20,8 +20,8 @@ const hotGoods=async()=>{
     id:route.params.id,
     type:props.hotType,
   })
-  hotGoodsList.value=res.data.result
-  console.log(res.data.result)
+  hotGoodsList.value=res.result
+  // console.log(res.data.result)
 }
 onMounted(()=>hotGoods())
 </script>

@@ -30,6 +30,7 @@ http.interceptors.response.use(res => res.data, e => {
     userStore.clearUserMessage()
     router.push('/login')
   }
+  console.log(e.response.status)
   return Promise.reject(e)
 })
 

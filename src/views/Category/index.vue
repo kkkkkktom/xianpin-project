@@ -10,7 +10,7 @@ import { onBeforeRouteUpdate } from 'vue-router';
           const res=await getBannerAPI({
             distributionSite: '2'
           })
-          bannerList.value=res.data.result
+          bannerList.value=res.result
           // console.log(res.data.result)
     }
 
@@ -19,7 +19,7 @@ import { onBeforeRouteUpdate } from 'vue-router';
     //无id传入时默认传参
     const getCategorys=async(id=route.params.id)=>{
         const res=await getCategoryAPI(id)
-        categorysObject.value=res.data.result
+        categorysObject.value=res.result
         // console.log(res.data.result)
     }
     onMounted(()=>{getCategorys(),getBanner()})
