@@ -6,6 +6,9 @@ import Category from '@/views/Category/index.vue'
 import SubCategory from '@/views/SubCategory/index.vue'
 import Detail from '@/views/Detail/index.vue'
 import CartList from '@/views/CartList/index.vue'
+import CheckOut from '@/views/CheckOut/index.vue'
+import Pay from '@/views/Pay/index.vue'
+import PayBack from '@/views/Pay/PayBack.vue'
 const router=createRouter({
   history:createWebHistory(import.meta.env.BASE_URL),
   //一级标题路由
@@ -33,6 +36,18 @@ const router=createRouter({
        {
         path:'cartlist',
         component:CartList
+       },
+       {
+        path:'checkout',
+        component:CheckOut
+       },
+       {
+        path:'pay',
+        component:Pay
+       },
+       {
+        path:'payback',
+        component:PayBack
        }
     ]
     },

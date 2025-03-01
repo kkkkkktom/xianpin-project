@@ -3,7 +3,7 @@ import {ref} from 'vue'
 import {computed} from 'vue'
 import {getCartAPI,getNewCartAPI} from '@/apis/cart'
 import { useUserStore } from "./user";
-
+import { delCartAPI } from "@/apis/cart";
 
 export const useCartStore=defineStore('cart',()=>{
     const userStore=useUserStore();
@@ -12,7 +12,7 @@ export const useCartStore=defineStore('cart',()=>{
     //购物车中的内容删除
     const delCart=async(skuId)=>{
      if(isLogin.value){
-      await delCartAPI({skuId})
+      await delCartAPI([skuId])
       const res=await getNewCartAPI()
       cartList.value=res.result
      }else{
@@ -20,7 +20,7 @@ export const useCartStore=defineStore('cart',()=>{
       cartList.value.splice(index,1)
      }
     }
-    //清楚购物
+    //清除购物车
     const clearCart=()=>{
       cartList.value=[]
     }
@@ -45,8 +45,9 @@ export const useCartStore=defineStore('cart',()=>{
 
 //添加商品到购物车
 const addCart=async (goods)=>{
+    const {skuId,count}=goods
     if(isLogin.value){
-      await getCartAPI({skuId,count})
+      await getCartAPI({ skuId,count });
       const res=await getNewCartAPI()
       cartList.value=res.result
     }else{

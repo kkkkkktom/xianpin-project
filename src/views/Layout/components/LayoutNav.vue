@@ -5,7 +5,7 @@ import {useRouter} from 'vue-router'
 const userStore=useUserStore()
 const router=useRouter()
 const confirm=()=>{
-  userStore.clearUserMessage()
+  userStore.clearUserInfo()
   router.push('/login')
 
 }
