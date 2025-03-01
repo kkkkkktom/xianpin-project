@@ -6,7 +6,7 @@ import HomeProduct from './components/HomeProduct.vue';
 import HomeNew from './components/HomeNew.vue';
 </script>
 <template>
-  <p class="test">我是home界面</p>
+  <p class="test"></p>
   <div class="contain">
       <HomeCategory/>
       <HomeBanner/>
