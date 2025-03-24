@@ -1,4 +1,3 @@
-Login/index.vue
 <script setup>
  import {ref,onMounted} from 'vue'
  import {loginAPI} from '@/apis/user'
@@ -6,7 +5,9 @@ Login/index.vue
 import 'element-plus/theme-chalk/el-message.css'
 import {useRouter} from 'vue-router'
 import { useUserStore } from '@/stores/user'
- //存储表单数据
+import { useAuth } from '@/composables/useAuth'
+const { login } = useAuth()
+ //存储表单数据ß
 const form=ref({
   account:'xiaotuxian001',
   password:'123456',
@@ -43,7 +44,9 @@ const doValidate=()=>{
     formRef.value.validate(async(valid)=>{
       // console.log(valid)
       if(valid){
+        // const userInfo=await login(form.value.account, form.value.password)
         // await userStore.getUserInfo({account,password})
+        // await userStore.getUserInfo()
         await userStore.getUserInfo({ account: form.value.account, password: form.value.password });
         // console.log(useUserStore.userInfo)
         ElMessage({
@@ -112,7 +115,7 @@ const doValidate=()=>{
           <a href="javascript:;">搜索推荐</a>
           <a href="javascript:;">友情链接</a>
         </p>
-        <p>CopyRight &copy; 小兔鲜儿</p>
+        <p>CopyRight &copy; 鲜品优选</p>
       </div>
     </footer>
   </div>

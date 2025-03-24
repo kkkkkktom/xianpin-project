@@ -6,7 +6,9 @@
 </script>
 <template>
 <!-- <el-button type="primary">Primary</el-button> -->
+<keep-alive>
 <RouterView/>
+</keep-alive>
 </template>
 
 

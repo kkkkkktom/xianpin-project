@@ -32,7 +32,7 @@ const load=async()=>{
   console.log('加载更多')
   categoryData.page++;
   const res=await getSubCategoryAPI(categoryData.value)
-  goods.value=[...goods.value,res.result.items]
+  goods.value=[...goods.value,...res.result.items]
   //加载完毕就结束监听，如果后端有明确的结束字段就用，没有就用下面的判定方法
   if(res.result.items.length===0){
     disabled.value=true
